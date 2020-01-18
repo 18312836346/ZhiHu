@@ -16,9 +16,11 @@
 						
 						<p class="meta">{{item.updated}}更新·{{item.viewCount}}次浏览</p>
 						<p class="introduction">{{item.introduction}}</p>
+						<!--显示标签类型-->
 						<span v-for="(section,index) in item.sections" :key="index" class="section">
 							{{section.sectionTitle}}
 						</span>
+						
 					</div>
 				</div>
 			</div>
@@ -61,7 +63,7 @@
 	.container{
 		display: block;
 		margin: auto;
-		width: 80%;
+		width: 60%;
 		margin-top: 15px;
 		
 		}
@@ -101,11 +103,12 @@
 			height: 40px;
 			border-radius: 5px;
 			position: absolute;
-			left: 1200px;
+			left: 1080px;
 			}
 		.meta{
+			margin-top: 5px;
 			color: darkgray;
-			font-size: 13px;
+			font-size: 12px;
 		}
 		.introduction{
 			margin-top: 10px;
@@ -118,12 +121,14 @@
 			-webkit-box-orient: vertical;/*重点*/
 		}
 		.section{
+			float: left;
 			background-color: rgb(246,246,246);
 			width: auto;
 			margin-right: 10px;
 			padding: 2px;
 			font-size: 13px;
 			border-radius: 5px;
+			height: auto;
 		}
 	
 		
