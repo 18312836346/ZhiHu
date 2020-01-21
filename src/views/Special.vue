@@ -1,7 +1,7 @@
 <template>
 	<div>
 			<div class="topic-head">
-				<img  class="pic-all" src="../assets/image/all.png" />
+				<img  class="pic-all" src="../assets/image/special.png" />
 				<span class="SpecialListPage-title">全部专题</span>
 				<span class="SpecialListPage-count">共有489个专题</span>
 			</div>

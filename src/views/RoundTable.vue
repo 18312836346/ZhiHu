@@ -69,7 +69,7 @@ export default {
 	background-color: white;
 	position: relative;
 	width: 200px;
-	height: 200px;
+	height: 190px;
 	border-radius: 5px;
 	border: 1px solid gainsboro;
 	border-radius: 10px;
@@ -79,7 +79,7 @@ export default {
 }
 .round_img {
 	width: 200px;
-	height: 200px;
+	height: 190px;
 	border-radius: 10px;
 	
 	

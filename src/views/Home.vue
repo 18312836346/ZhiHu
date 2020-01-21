@@ -10,6 +10,7 @@
 					<li class="three"><router-link to="/home/follow"><span style="color: #8590A6;font-size: 15px;">关注</span></router-link></li>
 					<li class="three"><router-link to="/home/hot"><span style="color: #8590A6;font-size: 15px;">热榜</span></router-link></li>
 			</ul>
+			<!-- 路由文件 -->
 			<router-view />
 			</div>
 			
@@ -20,9 +21,6 @@
 				<div  class="home-right-bottom"></div>
 				
 			</div>
-		
-			
-			
 			</div>
 			</div>
 		</div>
@@ -77,9 +75,7 @@
 		width: 8%;
 		margin-left: 15px;
 	}
-	.three h4{
-		color: black;
-	}
+
 	.container-right{
 		width: 30%;
 		

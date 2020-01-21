@@ -146,6 +146,7 @@
 		margin-left: 460px;
 	
 }
+/* 全部专题的图标 */
 .pic-all{
 	height: 20px;
 	width: 30px;
@@ -157,6 +158,7 @@
 	left: 500px;
      color: #000000;
 }
+/* 最新专题的图标 */
 .pic-all1{
 	height: 30px;
 	width: 50px;
@@ -173,4 +175,14 @@ color: #000000;
 	align-content: center;
 	margin-left: 300px;
 	margin-top: -80px;
+}
+.pic-roundtable{
+	height: 40px;
+	margin-left: 19px;
+}
+.pic-favorite{
+	height:30px;
+	width: 30px;
+	margin-top: 1px;
+	margin-left: 15px;	
 }
