@@ -9,7 +9,7 @@
 			<div class="fav" v-for="(item,index) in favorite" :key="index">
 				<div class="left" style="width:35%;">
 					<!-- 标题 -->
-					<h2><span style="color: #000000;margin-top: 10px; width: 100px;">{{item.title}}</span></h2>
+					<h2><span style="color: #000000;margin-top: 10px; width: auto;">{{item.title}}</span></h2>
 					<!-- 头像、名字 -->
 					<div class="hot-fav-head" style="padding: 10px;">
 						<img :src="item.creatorAvatar" alt="" style="float: left; margin-top: 5px;" />

@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<div class="container">
+	<div class="all" style="margin: 0 auto;">
+		<div class="container" style="margin-left: 300px;">
 			<div class="head">
 				<img class="pic-all1" src="../assets/image/special.png" />
 
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 			<!-- 查看更多：使其跳转到全部专题页面 -->
-			<div class="topic">
+			<div class="topic" style="margin-left: -70px;">
 				<router-link to="/special/all" class="btn"><button class="button-topic">
 						<h3 style="color: #A9A9A9;">查看更多专题 ></h3>
 					</button></router-link>
@@ -48,7 +48,7 @@
 
 
 		<!-- 圆桌讨论 -->
-		<div class="container1">
+		<div class="container1" style="margin-left: 300px;">
 			<div class="head">
 				<!-- 图标 -->
 				<img class="pic-roundtable" src="../assets/image/roundtable.png" />
@@ -65,7 +65,7 @@
 					<div class="w-row">
 						<div class="round-left">
 							<h3>{{item.name }}</h3>
-							
+
 							<h5 class="concern">{{item.includeCount}}位嘉宾参与 | {{item.visitsCount}}人关注</h5>
 						</div>
 						<div class="round-right">
@@ -78,14 +78,14 @@
 				</div>
 			</div>
 		</div>
-		<div class="topic">
+		<div class="topic" style="margin-left: 50px;">
 			<router-link to="/roundtable" class="btn"><button class="button-topic">
 					<h3 style="color: #A9A9A9;">查看更多圆桌 ></h3>
 				</button></router-link>
 		</div>
 
 		<!-- 热门收藏夹 -->
-		<div class="container2">
+		<div class="container2" style="margin-left: 300px;">
 			<div class="head">
 				<!-- 图标 -->
 				<img class="pic-favorite" src="../assets/image/favorite.png" />
@@ -139,7 +139,7 @@
 					</div>
 
 				</div>
-					<div class="topic">
+				<div class="topic" style="margin-left: -60px;">
 					<router-link to="/favorite" class="btn">
 						<button class="button-topic" style="margin-left: 470px;">
 							<h3 style="color: #A9A9A9; ;">查看更多收藏夹&nbsp;></h3>
@@ -148,10 +148,61 @@
 			</div>
 		</div>
 
-
+		<!-- 专栏 -->
+		<div class="columns" style="margin-left: 300px;">
+			<div class="head">
+				<!-- 从知乎拷来的svg图标 -->
+				<svg class="columns-img" fill="currentColor" viewBox="0 0 24 24" width="36" height="36">
+					<path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm4.043-15.524a.745.745 
+	0 0 0-1.053.017l-6.857 7.071 2.237 2.17 6.857-7.071a.743.743 0 0 0-.016-1.052l-1.168-1.135zm-9.028 9.476l-.348 
+	1.381 1.37-.39 1.274-.36-1.973-1.916-.323 1.285z"
+					 fill-rule="evenodd"></path>
+				</svg>
+				<h2 style="margin-top: 20px; margin-bottom: 20px;margin-left: 10px; font-size: 30px;">专栏</h2>
+			</div>
+		</div>
+		<div class="row2">
+			<div class="row-columns" v-for="(item, index) in columns" :key="index">
+				<!-- 头像 -->
+			
+				<div class="columns-header" style="width: 70px; height: 70px;border-radius: 50%; overflow: hidden;margin:  0 auto; margin-top: 20px;">
+					<img :src="item.imageUrl" alt="" style="width: 100%;"/>
+				</div>
+				
+				<!-- title -->
+	
+				<div class="columnbs-title">
+					<onbr><h2><span style="color: #000000;">{{item.title}}</span></h2></onbr>
+				</div>
+				<!-- 关注与文章 -->
+				<div class="cloumnbs-followers-articles_count">
+					<span style="font-size: 12px; text-align: center;">{{item.followers}}&nbsp;关注&nbsp;·&nbsp;{{item.articlesCount}}&nbsp;文章</span>
+				</div>
+				<!-- 介绍 -->
+				<div class="columnbs-description" style="height:auto; text-overflow: ellipsis; overflow: hidden;margin-top: 15px;text-align: center;">
+				<onbr><span style="font-size: 13px;text-align: center;color: #000000;">{{item.description}}</span></onbr>
+				</div>
+				<!-- 进入专栏按钮 -->
+				<a v-bind:href="item.url" style="text-decoration: none;display:block;">
+					<div class="columnbs-button" style="height: 35px;width:100px;margin: 0 auto; margin-top: 20px;">
+						<!-- 关注按钮 -->
+				
+					<button class="button" style="height: 35px;width:100px;margin: 0 auto;border: 1px solid; border-color: #4CAF50;background-color: #FFFFFF;">
+							<h4 style="color: #4CAF50;">进入专栏</h4>
+					</button>
+					</div></a>
+			</div>
+				<div class="topic" style="margin-left: -60px;">
+				<router-link to="/columns" class="btn">
+					<button class="button-topic" style="margin-left: 470px;">
+						<h3 style="color: #A9A9A9; ;">查看更多专栏&nbsp;></h3>
+					</button></router-link>
+			</div>
+		</div>
+		
 	</div>
 
-	</div>
+
 </template>
 
 <script>
@@ -161,10 +212,16 @@
 			return {
 				specials: [],
 				roundtable: [],
-				favorite: []
+				favorite: [],
+				columns:[],
 			};
 		},
 		created() {
+			// 专栏的接口获取
+			this.axios.get('http://localhost:8080/api/columns').then(res => {
+				console.log(res);
+				this.columns = res.data.data;
+			});
 			// 圆桌讨论的接口获取
 			this.axios.get('http://localhost:8080/api/favorite').then(res => {
 				console.log(res);
@@ -227,9 +284,9 @@
 
 	.card1 {
 		box-shadow: 2px 5px 5px #aaa;
-		width: 46%;
+		width: 44%;
 		margin: 1%;
-		height: 430px;
+		height: 440px;
 		background-color: rgb(255, 255, 255);
 	}
 
@@ -307,18 +364,18 @@
 	}
 
 	.container1 {
-	display: block;
-	margin:0 auto;
-	width: 70%;
-	margin-top: 15px;
+		display: block;
+		margin: 0 auto;
+		width: 70%;
+		margin-top: 15px;
 	}
 
-// 圆桌卡片样式
+	// 圆桌卡片样式
 	.roundtable {
 		box-shadow: 2px 5px 5px #aaa;
-		width: 46%;
+		width: 44%;
 		margin: 1%;
-		height: 400px;
+		height: 360px;
 		background-color: rgb(255, 255, 255);
 		position: relative;
 	}
@@ -375,14 +432,13 @@
 		display: block;
 		margin: auto;
 		width: 70%;
-
 		margin-top: 15px;
 	}
 
 	// 热门收藏夹的框
 	.favorite {
 		box-shadow: 2px 5px 5px #aaa;
-		width: 46%;
+		width: 44%;
 		margin: 1%;
 		height: 320px;
 		background-color: rgb(255, 255, 255);
@@ -407,4 +463,56 @@
 		color: #000000;
 		font-size: 15px;
 	}
+
+// 专栏
+	.columns {
+		display: block;
+		margin: auto;
+		width: 70%;
+		margin-top: 15px;
+	}
+
+	.columns-img {
+		fill: #0084ff;
+		height: 40px;
+		width: 40px;
+		margin-top: 1px;
+		margin-left: 15px;
+	}
+	.row-columns{
+	
+		box-shadow: 1px 3px 3px #aaa;
+		width: 210px;
+		margin: 15px;
+		height: 280px;
+		background-color: rgb(255, 255, 255);
+	}
+	
+	.row2 {
+		
+		margin-left: 300px;
+		display: flex;
+		flex-wrap: wrap;
+		border-radius: 10px;
+		width: 1000px;
+		height: auto;
+	}
+	.columnbs-title{
+		height:auto;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		color: #000000;
+		font-size: 15px;
+		text-align: center;
+		margin-left: -5px;
+		margin-top: 15px;
+	}
+	.columnbs-description{
+		
+		text-overflow: ellipsis;
+		overflow: hidden;
+		color: #000000;
+		font-size: 15px;
+	}
+
 </style>
