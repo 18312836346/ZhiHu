@@ -30,7 +30,7 @@
 		<!-- 专栏发现 -->
 		<div class="found" style="margin-top: 100px; background-image:url(../assets/image/background.png);">
 			<div class="row3">
-				<div class="row3-columns" v-for="(item, index) in columns" :key="index">
+				<div class="row3-columns" v-for="(item, index) in columns" v-if="index>=begin&&index<=end" :key="index">
 					<!-- 头像 -->
 
 					<div class="columns-header" style="width: 70px; height: 70px;border-radius: 50%; overflow: hidden;margin:  0 auto; margin-top: 20px;">
@@ -63,8 +63,8 @@
 					</div>
 
 				</div>
-	                    <div>
-							<button class="refresh"><svg class="Zi Zi--Refresh Button-zi" fill="currentColor" viewBox="0 0 24 24" width="1.2em" height="1.2em"><path d="M20 12.878C20 17.358 16.411 21 12 21s-8-3.643-8-8.122c0-4.044 3.032-7.51 6.954-8.038.034-1.185.012-1.049.012-1.049-.013-.728.461-1.003 1.057-.615l3.311 2.158c.598.39.596 1.026 0 1.418l-3.31 2.181c-.598.393-1.08.12-1.079-.606 0 0 .006-.606-.003-1.157-2.689.51-4.675 2.9-4.675 5.708 0 3.21 2.572 5.822 5.733 5.822 3.163 0 5.733-2.612 5.733-5.822 0-.633.51-1.148 1.134-1.148.625 0 1.133.515 1.133 1.148" fill-rule="evenodd"></path></svg>
+	                    <div style="margin-top: -100px;">
+							<button class="refresh" @click="refresh()"><svg class="Zi Zi--Refresh Button-zi" fill="currentColor" viewBox="0 0 24 24" width="1.2em" height="1.2em"><path d="M20 12.878C20 17.358 16.411 21 12 21s-8-3.643-8-8.122c0-4.044 3.032-7.51 6.954-8.038.034-1.185.012-1.049.012-1.049-.013-.728.461-1.003 1.057-.615l3.311 2.158c.598.39.596 1.026 0 1.418l-3.31 2.181c-.598.393-1.08.12-1.079-.606 0 0 .006-.606-.003-1.157-2.689.51-4.675 2.9-4.675 5.708 0 3.21 2.572 5.822 5.733 5.822 3.163 0 5.733-2.612 5.733-5.822 0-.633.51-1.148 1.134-1.148.625 0 1.133.515 1.133 1.148" fill-rule="evenodd"></path></svg>
 				换一换</button>
 						</div>
 			</div>
@@ -79,7 +79,9 @@
 		name: 'columns',
 		data() {
 			return {
-				columns: []
+				columns: [],
+				begin:0,
+				end:7,
 			};
 		},
 		created() {
@@ -87,6 +89,18 @@
 				console.log(res);
 				this.columns = res.data.data;
 			});
+		},
+		methods:{
+			refresh(){
+				if(this.end>=this.columns.length){
+					this.begin=0;
+					this.end=7;
+				}
+				else{
+					this.begin +=8;
+				     this.end +=8;
+				}
+			}
 		}
 	};
 </script>
@@ -160,8 +174,9 @@
 		box-shadow: 1px 3px 3px #aaa;
 		width: 210px;
 		margin: 15px;
-		height: 280px;
+		height: 290px;
 		background-color: rgb(255, 255, 255);
+		
 	}
 
 	.columnbs-title {
@@ -193,7 +208,6 @@
 		border-radius: 5px;
 		margin: 20px;
 		margin-left: 440px;
-
 
 	}
 </style>
